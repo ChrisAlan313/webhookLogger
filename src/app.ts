@@ -17,8 +17,12 @@ app.use(cors());
 app.use(express.json());
 
 app.get<{}, MessageResponse>('/*', (req, res) => {
-  console.log(req.body);
-  res.status(200).end();
+  res.status(200).send();
+});
+
+app.post<{}, MessageResponse>('/*', (req, res) => {
+  console.log('POST Request Body:', JSON.stringify(req.body, null, 2));
+  res.status(200).send();
 });
 
 app.use('/api/v1', api);
